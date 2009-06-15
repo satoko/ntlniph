@@ -3,6 +3,7 @@
 #import "NTLNTwitterClient.h"
 #import "NTLNIconDownloader.h"
 #import "NTLNTwitterUserClient.h"
+#import "NTLNTwitterFriendshipsClient.h"
 
 #define IDLE_CLIENT_NOTIFICATION		@"IDLE_CLIENT_NOTIFICATION"
 
@@ -32,6 +33,8 @@ GTMOBJECT_SINGLETON_BOILERPLATE(NTLNHttpClientPool, sharedInstance)
 			return [NTLNIconDownloader class];
 		case NTLNHttpClientPoolClientType_TwitterUserClient:
 			return [NTLNTwitterUserClient class];
+		case NTLNHttpClientPoolClientType_TwitterFriendshipsClient:
+			return [NTLNTwitterFriendshipsClient class];
 	}
 	return [NSNull class];
 }

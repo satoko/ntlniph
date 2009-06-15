@@ -4,6 +4,7 @@ typedef enum NTLNHttpClientPoolClientType {
 	NTLNHttpClientPoolClientType_TwitterClient,
 	NTLNHttpClientPoolClientType_IconDownloader,
 	NTLNHttpClientPoolClientType_TwitterUserClient,
+	NTLNHttpClientPoolClientType_TwitterFriendshipsClient,
 } NTLNHttpClientPoolClientType;
 		
 @interface NTLNHttpClientPool : NSObject {
