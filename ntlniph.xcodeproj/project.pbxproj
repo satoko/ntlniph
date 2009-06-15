@@ -71,6 +71,8 @@
 		8DDF89340FA48FB600E59517 /* more_button_normal_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DDF89330FA48FB600E59517 /* more_button_normal_b.png */; };
 		8DF5E3760F910D340096B849 /* dm.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF5E3740F910D340096B849 /* dm.png */; };
 		8DF5E3770F910D340096B849 /* favorites.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF5E3750F910D340096B849 /* favorites.png */; };
+		E521ADB10FD9B37500596680 /* NTLNFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = E521ADB00FD9B37500596680 /* NTLNFriends.m */; };
+		E56593A50FDCF0FB00600E49 /* NTLNTwitterFriendshipsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E56593A40FDCF0FB00600E49 /* NTLNTwitterFriendshipsClient.m */; };
 		F13E2B380FB806C50086B0E7 /* readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F13E2B370FB806C50086B0E7 /* readme.html */; };
 		F1474F8B0FD3F457007D9F4C /* NTLNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1474EF20FD3F457007D9F4C /* NTLNAppDelegate.m */; };
 		F1474F8C0FD3F457007D9F4C /* NTLNTweetPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1474EF60FD3F457007D9F4C /* NTLNTweetPostViewController.m */; };
@@ -247,6 +249,11 @@
 		8DDF89330FA48FB600E59517 /* more_button_normal_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_button_normal_b.png; sourceTree = "<group>"; };
 		8DF5E3740F910D340096B849 /* dm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dm.png; sourceTree = "<group>"; };
 		8DF5E3750F910D340096B849 /* favorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorites.png; sourceTree = "<group>"; };
+		E521ADAF0FD9B37500596680 /* NTLNFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTLNFriends.h; sourceTree = "<group>"; };
+		E521ADB00FD9B37500596680 /* NTLNFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTLNFriends.m; sourceTree = "<group>"; };
+		E525761F0FDCA04000AAF7FE /* twitter_apikeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitter_apikeys.h; sourceTree = SOURCE_ROOT; };
+		E56593A30FDCF0FB00600E49 /* NTLNTwitterFriendshipsClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTLNTwitterFriendshipsClient.h; sourceTree = "<group>"; };
+		E56593A40FDCF0FB00600E49 /* NTLNTwitterFriendshipsClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTLNTwitterFriendshipsClient.m; sourceTree = "<group>"; };
 		F13E2B370FB806C50086B0E7 /* readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = readme.html; path = resources/readme.html; sourceTree = "<group>"; };
 		F1474EF10FD3F457007D9F4C /* NTLNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTLNAppDelegate.h; sourceTree = "<group>"; };
 		F1474EF20FD3F457007D9F4C /* NTLNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTLNAppDelegate.m; sourceTree = "<group>"; };
@@ -634,6 +641,7 @@
 		F1474EF00FD3F457007D9F4C /* app */ = {
 			isa = PBXGroup;
 			children = (
+				E525761F0FDCA04000AAF7FE /* twitter_apikeys.h */,
 				32CA4F630368D1EE00C91783 /* ntlniph_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				F1474EF10FD3F457007D9F4C /* NTLNAppDelegate.h */,
@@ -792,6 +800,8 @@
 				F1474F3A0FD3F457007D9F4C /* NTLNTwitterClient.m */,
 				F1474F3F0FD3F457007D9F4C /* NTLNTwitterUserClient.h */,
 				F1474F400FD3F457007D9F4C /* NTLNTwitterUserClient.m */,
+				E56593A30FDCF0FB00600E49 /* NTLNTwitterFriendshipsClient.h */,
+				E56593A40FDCF0FB00600E49 /* NTLNTwitterFriendshipsClient.m */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -823,6 +833,8 @@
 				F1474F4B0FD3F457007D9F4C /* NTLNMessage.m */,
 				F1474F4C0FD3F457007D9F4C /* NTLNStatus.h */,
 				F1474F4D0FD3F457007D9F4C /* NTLNStatus.m */,
+				E521ADAF0FD9B37500596680 /* NTLNFriends.h */,
+				E521ADB00FD9B37500596680 /* NTLNFriends.m */,
 				F1474F4E0FD3F457007D9F4C /* NTLNTimeline.h */,
 				F1474F4F0FD3F457007D9F4C /* NTLNTimeline.m */,
 			);
@@ -1249,6 +1261,8 @@
 				F1474FEE0FD3F486007D9F4C /* UICTableViewCellTextInput.m in Sources */,
 				F1474FEF0FD3F486007D9F4C /* UICTableViewController.m in Sources */,
 				F1474FF00FD3F486007D9F4C /* UICTableViewControllerSelect.m in Sources */,
+				E521ADB10FD9B37500596680 /* NTLNFriends.m in Sources */,
+				E56593A50FDCF0FB00600E49 /* NTLNTwitterFriendshipsClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1259,17 +1273,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Satoko Hibi";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ntlniph_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					ENABLE_OAUTH,
+				);
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/gtm/TigerGcov\"",
 				);
 				PRODUCT_NAME = ntlniph;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1AA33022-6F2B-4C21-900F-4D4CD032406E";
 			};
 			name = Debug;
 		};

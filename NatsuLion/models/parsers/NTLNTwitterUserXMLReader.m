@@ -89,7 +89,7 @@
 					user.protected_ = NO;
 				}
 			} else if ([elementName isEqualToString:@"following"]) {
-				if ([currentStringValue isEqualToString:@"true"]) {
+				if ([currentStringValue isEqualToString:@"0"]) {
 					user.following = YES;
 				} else {
 					user.following = NO;

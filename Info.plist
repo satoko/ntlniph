@@ -5,13 +5,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>NatsuLion</string>
+	<string>satoko NatsuLion</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string>icon.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.natsulion.natsuliphone</string>
+	<string>com.s21g.satoko.natsuliphone</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -20,24 +20,24 @@
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.51</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleBlackOpaque</string>
-	<key>UIPrerenderedIcon</key>
-	<false/>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>org.natsulion.natsuliphoneprotocol</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>natsulion</string>
 			</array>
-			<key>CFBundleURLName</key>
-			<string>org.natsulion.natsuliphoneprotocol</string>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>1.51</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIPrerenderedIcon</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 </dict>
 </plist>

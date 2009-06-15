@@ -8,10 +8,17 @@
 #import "NTLNFavoriteViewController.h"
 #import "NTLNUserListViewController.h"
 #import "NTLNHttpClientPool.h"
+#import "NTLNAccount.h"
+
+#define FOLLOWBUTTON_UN_FOLLOW	@"Remove"
+#define FOLLOWBUTTON_FOLLOW		@"Follow"
+#define followButtonWidth		65
+#define followButtonHeight		25
+#define followAISize			18
 
 @interface NTLNUserViewController(Private)
 - (void)getUserInfo;
-
+- (void)updateFollowButton;
 @end
 
 
@@ -61,6 +68,8 @@
 
 - (void)dealloc {
 	[userInfo release];
+	[followButton release];
+	[followAI release];
     [super dealloc];
 }
 
@@ -73,8 +82,8 @@
 									  image:message.iconContainer.iconImage 
 									  round:8.0] autorelease];
 	iconview.backgroundColor = [[NTLNColors instance] oddBackground];
-	[iconview addTarget:self action:@selector(replyButtonAction:)
-	   forControlEvents:UIControlEventTouchUpInside];
+//	[iconview addTarget:self action:@selector(replyButtonAction:)
+//	   forControlEvents:UIControlEventTouchUpInside];
 	[cell.contentView addSubview:iconview];	
 	
 	
@@ -95,9 +104,30 @@
 //		[b addTarget:self action:@selector(retweetButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 		[cell addSubview:b];
 	}
-	
 	cell.accessoryType = UITableViewCellAccessoryNone;
 
+	{
+		UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+		UIColor *color = [[NTLNColors instance] textForground];
+		[b setFrame:CGRectMake(76.0 + 230.0 - followButtonWidth, 10.0, 
+							   followButtonWidth, followButtonHeight)];
+		[b setFont:[UIFont boldSystemFontOfSize:10]];
+		[b setBackgroundImage:[UIImage imageNamed:@"pushed_04.png"] forState:UIControlStateHighlighted];
+		[b addTarget:self action:@selector(followButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+		[b setTitleColor:color forState:UIControlStateNormal];
+		[cell addSubview:b];
+		followButton = [b retain];
+		[self updateFollowButton];
+	}
+	
+	if(followAI) {
+		[followAI removeFromSuperview];
+	}
+	UIActivityIndicatorView *ai = [[[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(followButtonWidth/2-followAISize/2, followButtonHeight/2-followAISize/2, followAISize, followAISize)] autorelease];
+	ai.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+	ai.hidesWhenStopped = YES;
+	followAI = [ai retain];
+	
 	return cell;
 }
 
@@ -212,6 +242,7 @@
 	[c getUserInfoForScreenName:message.screenName];
 }
 
+#pragma mark NTLNTwitterUserClientDelegate
 - (void)twitterUserClientSucceeded:(NTLNTwitterUserClient*)sender {
 	[userInfo release];
 	userInfo = nil;
@@ -221,11 +252,65 @@
 	}
 	[self.tableView reloadData];
 	
-//	LOG(@"twitterUserClientSucceeded: %d", userInfo.statuses_count);
+//	LOG(@"twitterUserClientSucceeded: %d", userInfo.statuses_count);	
 }
 
 - (void)twitterUserClientFailed:(NTLNTwitterUserClient*)sender {
 }
 
+#pragma mark NTLNTwitterFriendshipsClientDelegate
+- (void)twitterFriendshipsClientSucceeded:(NTLNTwitterFriendshipsClient*)sender {	
+	if ([sender.users count] > 0) {
+		userInfo.following = !userInfo.following;
+ 	}
+	[self updateFollowButton];
+	[followAI stopAnimating];
+	[followAI removeFromSuperview];
+}
+
+- (void)twitterFriendshipsClientFailed:(NTLNTwitterFriendshipsClient*)sender {
+	[self updateFollowButton];
+	[followAI stopAnimating];
+	[followAI removeFromSuperview];
+}
+
+#pragma mark followButton
+- (void)followButtonAction:(id)sender {
+	NTLNTwitterFriendshipsClient *c = [[NTLNHttpClientPool sharedInstance] 
+									   idleClientWithType:NTLNHttpClientPoolClientType_TwitterFriendshipsClient];
+	c.delegate = self;
+	
+	if(userInfo.following) {
+		NSLog(@"destroyFriendshipsWithUserId");
+		[c destroyFriendshipsWithUserId:userInfo.user_id];
+	} else {
+		NSLog(@"createFriendshipsWithUserId");
+		[c createFriendshipsWithUserId:userInfo.user_id];
+	}
+	
+	UIImage *buttonImage = nil;
+	if ([[NTLNConfiguration instance] darkColorTheme]) {
+		buttonImage = [UIImage imageNamed:@"pushed_black_04.png"];
+	} else {
+		buttonImage = [UIImage imageNamed:@"pushed_04.png"];
+	}
+	[followButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+	[followButton addSubview:followAI];
+	[followAI startAnimating];
+}
+
+- (void)updateFollowButton {
+	NSString *title = nil;
+	if (userInfo.following) {
+		title = FOLLOWBUTTON_UN_FOLLOW;
+	} else {
+		title = FOLLOWBUTTON_FOLLOW;
+	}
+	[followButton setTitle:title forState:UIControlStateNormal];
+	[followButton setBackgroundImage:nil forState:UIControlStateNormal];
+}
+
 @end
+
+
 
