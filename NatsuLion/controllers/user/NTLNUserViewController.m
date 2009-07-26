@@ -204,6 +204,15 @@
 	} else {
 		cell = (NTLNCell*)[self nameCell];
 	}
+	
+	if (row == 1) {
+		cell.cellType = NTLNCellTypeRoundTop;
+	}
+	int ROW_COUNT = 5;
+	if (row >= ROW_COUNT ) {
+		cell.cellType = NTLNCellTypeRoundBottom;
+	}
+	
 	return cell;
 }
 
