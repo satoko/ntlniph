@@ -71,17 +71,23 @@
 	if (links == nil) {
 		links = [[NSMutableArray alloc] init];
 
+		//NOTE: change cell order
+		[self parseToken];
+		
+		//twt owner
+		NTLNURLPair *pair = [[NTLNURLPair alloc] init];
+		pair.text = message.screenName;
+		[links addObject:pair];
+		
+		//in reply to
 		if (message.in_reply_to_status_id.length > 0) {
 			NTLNURLPair *pair = [[NTLNURLPair alloc] init];
 			pair.text = [NSString stringWithFormat:@"in reply to %@", message.in_reply_to_screen_name];
 			pair.conversation = YES;
 			[links addObject:pair];
 		}
-
-		NTLNURLPair *pair = [[NTLNURLPair alloc] init];
-		pair.text = message.screenName;
-		[links addObject:pair];
-		[self parseToken];
+		
+		
 	}
 }
 
@@ -399,18 +405,10 @@
 	return cell;
 }
 
+//NOTE: change the cell order
 - (void)parseToken {
 	NSString *text = message.text;
 	NSArray *a;
-
-	a = [text gtm_allSubstringsMatchedByPattern:@"@[[:alnum:]_]+"];
-	for (NSString *s in a) {
-		NTLNURLPair *pair = [[NTLNURLPair alloc] init];
-		pair.text = [NSString stringWithFormat:@"%@ + %@", message.screenName, [s substringFromIndex:1]];
-		pair.screenName = [s substringFromIndex:1];
-		[links addObject:pair];
-		[pair release];
-	}
 
 	a = [text gtm_allSubstringsMatchedByPattern:@"http:\\/\\/[^[:space:]]+"];
 	for (NSString *s in a) {
@@ -429,6 +427,16 @@
 		[links addObject:pair];
 		[pair release];
 	}
+	
+	a = [text gtm_allSubstringsMatchedByPattern:@"@[[:alnum:]_]+"];
+	for (NSString *s in a) {
+		NTLNURLPair *pair = [[NTLNURLPair alloc] init];
+		pair.text = [NSString stringWithFormat:@"%@ + %@", message.screenName, [s substringFromIndex:1]];
+		pair.screenName = [s substringFromIndex:1];
+		[links addObject:pair];
+		[pair release];
+	}
+		
 /*
 	a = [text gtm_allSubstringsMatchedByPattern:@"#[^[:space:]]+"];
 	for (NSString *s in a) {

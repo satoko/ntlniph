@@ -1267,7 +1267,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Satoko Hibi";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Satoko Hibi (E8S54XSP4R)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1283,7 +1283,7 @@
 					"\"$(SRCROOT)/gtm/TigerGcov\"",
 				);
 				PRODUCT_NAME = ntlniph;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1AA33022-6F2B-4C21-900F-4D4CD032406E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D8542AFD-EF16-4C90-958E-D32E13A65E66";
 			};
 			name = Debug;
 		};
