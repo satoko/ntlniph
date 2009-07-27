@@ -146,7 +146,7 @@
 				return 120;
 		}
 	} else {
-		if ([indexPath row] == 0) return 100;
+		if ([indexPath row] == 0) return 120;
 	}
 	return 44;
 }
@@ -310,7 +310,9 @@
 
 - (void)updateFollowButton {
 	NSString *title = nil;
-	if (userInfo.following) {
+	if(!userInfo) {
+		title = @"";
+	} else if (userInfo.following) {
 		title = FOLLOWBUTTON_UN_FOLLOW;
 	} else {
 		title = FOLLOWBUTTON_FOLLOW;
